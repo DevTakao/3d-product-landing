@@ -1,9 +1,9 @@
-import "./App.css";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <>
-      <h1 className="text-red-400">Hello Threejs</h1>
+      <HomePage />
     </>
   );
 }
