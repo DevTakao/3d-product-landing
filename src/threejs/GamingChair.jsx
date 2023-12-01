@@ -1,14 +1,48 @@
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
+import { useModelStore } from "../store/modelStore";
+import { easing } from "maath";
+
 import GamingChairGLTF from "../assets/gaming-chair-kiiro/gaming_chair_kiiro.glb";
+const metalMeshes = ["Circle_1", "Circle_2"];
+const seatMeshes = ["siedzisko_1", "siedzisko_2"];
 
 const GamingChair = ({ pos }) => {
+  const { coatingColor, cushionColor } = useModelStore();
   const { scene } = useGLTF(GamingChairGLTF);
   const modelRef = useRef();
+  const metalMeshRefs = useRef([]);
+  const seatMeshRefs = useRef([]);
 
-  useFrame(() => {
+  //  Meshes that can change color
+  if (metalMeshRefs.current.length === 0) {
+    scene.traverse((child) => {
+      if (child.isMesh && metalMeshes.includes(child.name)) {
+        metalMeshRefs.current.push(child);
+      }
+    });
+  }
+
+  if (seatMeshRefs.current.length === 0) {
+    scene.traverse((child) => {
+      if (child.isMesh && seatMeshes.includes(child.name)) {
+        seatMeshRefs.current.push(child);
+      }
+    });
+  }
+
+  useFrame((state, delta) => {
+    // Rotation
     modelRef.current.rotation.y += Math.PI / 3140;
+
+    // Color transition
+    metalMeshRefs.current.forEach((child) => {
+      easing.dampC(child.material.color, coatingColor, 1, delta);
+    });
+    seatMeshRefs.current.forEach((child) => {
+      easing.dampC(child.material.color, cushionColor, 1, delta);
+    });
   });
 
   return <primitive ref={modelRef} position={pos} object={scene} />;
