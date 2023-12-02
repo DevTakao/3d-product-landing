@@ -33,6 +33,9 @@ const GamingChair = ({ pos }) => {
   }
 
   useFrame((state, delta) => {
+    // Position
+    easing.damp3(modelRef.current.position, pos, 0.25, delta);
+
     // Rotation
     modelRef.current.rotation.y += Math.PI / 3140;
 
@@ -45,7 +48,7 @@ const GamingChair = ({ pos }) => {
     });
   });
 
-  return <primitive ref={modelRef} position={pos} object={scene} />;
+  return <primitive ref={modelRef} object={scene} />;
 };
 
 export default GamingChair;

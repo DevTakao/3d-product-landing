@@ -5,3 +5,7 @@
 html {
   background-color: #292929;
 }
+
+* {
+  /* outline: 1px outset red; */
+}
