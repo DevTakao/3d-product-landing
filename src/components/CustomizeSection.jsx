@@ -4,7 +4,7 @@ const CustomizeSection = () => {
   const { setCoatingColor, setCushionColor } = useModelStore();
 
   return (
-    <div className="w-1/2 text-white">
+    <div className="w-1/2 text-white pb-[100vh]">
       <div className={`coating__color__picker mb-20`}>
         <h2 className="mb-10 text-2xl font-medium">Metal Coating Color</h2>
         <div className="flex">
