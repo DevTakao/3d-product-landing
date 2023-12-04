@@ -6,6 +6,7 @@ import CameraControls from "./CameraControls";
 import { useModelStore } from "../store/modelStore";
 
 const ThreeApp = () => {
+  console.log("ThreeApp");
   const { isViewSection } = useModelStore();
 
   const MAX_INTENSITY = 1;
