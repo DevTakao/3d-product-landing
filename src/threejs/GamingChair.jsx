@@ -1,6 +1,6 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
+import { useGLTF, useProgress } from "@react-three/drei";
 import { useModelStore } from "../store/modelStore";
 import { easing } from "maath";
 
@@ -9,11 +9,18 @@ const metalMeshes = ["Circle_1", "Circle_2"];
 const seatMeshes = ["siedzisko_1", "siedzisko_2"];
 
 const GamingChair = ({ pos }) => {
-  const { coatingColor, cushionColor } = useModelStore();
+  const { setIsAppLoading, coatingColor, cushionColor } = useModelStore();
   const { scene } = useGLTF(GamingChairGLTF);
   const modelRef = useRef();
   const metalMeshRefs = useRef([]);
   const seatMeshRefs = useRef([]);
+  const { progress } = useProgress();
+
+  useEffect(() => {
+    if (progress === 100) {
+      setIsAppLoading(false);
+    }
+  }, [progress, setIsAppLoading]);
 
   //  Meshes that can change color
   if (metalMeshRefs.current.length === 0) {

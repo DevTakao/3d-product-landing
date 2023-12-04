@@ -29,7 +29,7 @@ const ViewSection = () => {
 
   return (
     <>
-      <div ref={sectionRef} className="z-0 min-h-[100vh] relative"></div>
+      <div ref={sectionRef} className="z-0 min-h-[90vh] relative"></div>
       <motion.div
         variants={popupVariants}
         transition={{ duration: 1 }}
