@@ -33,13 +33,13 @@ const GamingChair = ({ pos }) => {
   }
 
   useFrame((state, delta) => {
-    // Position
+    // Position change on scroll
     easing.damp3(modelRef.current.position, pos, 0.25, delta);
 
-    // Rotation
+    // Auto rotation
     modelRef.current.rotation.y += Math.PI / 3140;
 
-    // Color transition
+    // Color change smoothly
     metalMeshRefs.current.forEach((child) => {
       easing.dampC(child.material.color, coatingColor, 1, delta);
     });
@@ -48,7 +48,7 @@ const GamingChair = ({ pos }) => {
     });
   });
 
-  return <primitive ref={modelRef} object={scene} />;
+  return <primitive object={scene} ref={modelRef} dispose={null} />;
 };
 
 export default GamingChair;

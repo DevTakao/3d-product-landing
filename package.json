@@ -13,6 +13,7 @@
     "@react-three/drei": "^9.88.13",
     "@react-three/fiber": "^8.15.10",
     "@types/three": "^0.158.2",
+    "@use-gesture/react": "^10.3.0",
     "autoprefixer": "^10.4.16",
     "framer-motion": "^10.16.9",
     "maath": "^0.10.4",

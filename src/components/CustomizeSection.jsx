@@ -84,11 +84,6 @@ const CustomizeSection = () => {
           </div>
         </div>
       </div>
-      <div className="flex items-end justify-center min-h-full col-span-5 col-start-7 pointer-events-none">
-        <span className=" text-white bg-gray-500 bg-opacity-50 select-none h-[10%] max-h-[50px] px-5 mb-[5%] flex items-center justify-center">
-          Click and drag to view from different angles
-        </span>
-      </div>
     </div>
   );
 };

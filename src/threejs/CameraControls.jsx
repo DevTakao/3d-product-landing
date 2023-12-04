@@ -1,18 +1,18 @@
 import { OrbitControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { easing } from "maath";
+import { useModelStore } from "../store/modelStore";
 
 const CameraControls = ({ pos, children }) => {
-  console.log(pos);
+  const { isDragging } = useModelStore();
+
   useFrame((state, delta) => {
-    easing.damp3(state.camera.position, pos, 0.25, delta);
-    // set the model rotation smoothly
-    // easing.dampE(group.current.rotation, [state.pointer.y / 10, -state.pointer.x / 5, 0], 0.25, delta);
+    !isDragging && easing.damp3(state.camera.position, pos, 0.5, delta);
   });
 
   return (
     <group>
-      <OrbitControls enabled={true} enableZoom={false} />
+      <OrbitControls makeDefault position={pos} enableZoom={false} />
       {children}
     </group>
   );
