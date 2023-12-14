@@ -3,7 +3,15 @@ import { useFrame } from "@react-three/fiber";
 import { useGLTF, useProgress, useVideoTexture } from "@react-three/drei";
 import { useModelStore } from "../store/modelStore";
 import { easing } from "maath";
-import { BackSide, CylinderGeometry, Mesh, MeshStandardMaterial, RepeatWrapping } from "three";
+import {
+  BackSide,
+  CylinderGeometry,
+  Mesh,
+  MeshBasicMaterial,
+  MeshPhongMaterial,
+  MeshStandardMaterial,
+  RepeatWrapping,
+} from "three";
 
 import GamingChairGLTF from "../assets/gaming-chair-kiiro/gaming_chair_kiiro.glb";
 import VideoSrc from "../assets/video.mp4";
@@ -44,7 +52,7 @@ const GamingChair = ({ pos }) => {
 
     screenMeshRefs.current.forEach((child) => {
       const geo = new CylinderGeometry(2.6, 2.6, 1.4, 50, 1, true, 0, 3);
-      const mat = new MeshStandardMaterial({ map: texture, side: BackSide });
+      const mat = new MeshBasicMaterial({ map: texture, side: BackSide });
 
       // flip the mirrored texture due to being backside
       mat.map.wrapS = RepeatWrapping;
